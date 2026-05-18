@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -19,58 +20,62 @@
   --teal:#0F6E56;--teal2:#1D9E75;--teal-light:#E1F5EE;--teal-b:#9FE1CB;
   --red:#A32D2D;--red2:#E24B4A;--red-light:#FCEBEB;--red-b:#F7C1C1;
   --amber:#BA7517;--amber-light:#FAEEDA;--amber-b:#FAC775;
-  --green:#3B6D11;--green-light:#EAF3DE;
-  --gray:#444441;--gray-light:#F1EFE8;
   --bg:#f8f9fb;--surface:#ffffff;--border:rgba(0,0,0,0.08);--text:#1a1a1a;--text2:#555;--text3:#888;
 }
 html,body{height:100%;overflow:hidden;background:var(--navy);font-family:'DM Sans',sans-serif;}
 #app{height:100vh;display:flex;flex-direction:column;background:var(--bg);max-width:430px;margin:0 auto;position:relative;overflow:hidden;}
-
-/* STATUS BAR */
-.status-bar{background:var(--navy);color:white;padding:env(safe-area-inset-top, 8px) 16px 8px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-family:'Syne',sans-serif;letter-spacing:.5px;flex-shrink:0;}
-
-/* SCREENS */
+.status-bar{background:var(--navy);color:white;padding:env(safe-area-inset-top,8px) 16px 8px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-family:'Syne',sans-serif;letter-spacing:.5px;flex-shrink:0;}
 .screen{display:none;flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
 .screen.active{display:flex;flex-direction:column;}
-
-/* BOTTOM NAV */
 .bottom-nav{background:var(--surface);border-top:1px solid var(--border);display:flex;flex-shrink:0;padding-bottom:env(safe-area-inset-bottom,0);}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 8px;border:none;background:none;cursor:pointer;color:var(--text3);transition:color .2s;}
 .nav-btn.active{color:var(--blue);}
 .nav-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 .nav-btn span{font-size:10px;font-weight:500;}
+.back-btn{background:none;border:none;color:white;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:13px;opacity:.85;padding:0 0 10px;font-family:'DM Sans',sans-serif;}
+.back-btn svg{width:18px;height:18px;stroke:white;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
 
-/* ===== HOME ===== */
-.home-header{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:white;padding:20px 20px 28px;position:relative;overflow:hidden;}
+/* SELECTOR */
+#screen-selector{background:var(--navy);}
+.selector-header{background:var(--navy);padding:24px 20px 16px;color:white;flex-shrink:0;}
+.selector-logo{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3px;opacity:.5;text-transform:uppercase;margin-bottom:6px;}
+.selector-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;margin-bottom:4px;}
+.selector-sub{font-size:13px;opacity:.6;}
+.selector-search{padding:10px 16px;background:var(--navy);flex-shrink:0;}
+.search-input{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 14px;color:white;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;}
+.search-input::placeholder{color:rgba(255,255,255,.35);}
+.marina-list-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.region-label{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);padding:14px 16px 6px;}
+.marina-item{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(255,255,255,.05);}
+.marina-item:hover,.marina-item:active{background:rgba(255,255,255,.08);}
+.marina-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.marina-item-name{font-size:15px;font-weight:500;color:white;}
+.marina-item-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;}
+
+/* HOME */
+.home-header{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:white;padding:20px 20px 24px;position:relative;overflow:hidden;flex-shrink:0;}
 .home-header::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04);}
-.home-header::after{content:'';position:absolute;right:20px;top:20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.03);}
 .marina-label{font-size:11px;font-family:'Syne',sans-serif;letter-spacing:2px;opacity:.6;text-transform:uppercase;margin-bottom:4px;}
-.marina-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;margin-bottom:12px;}
+.marina-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;margin-bottom:8px;}
 .berth-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:5px 12px;font-size:12px;}
-.weather-strip{background:var(--surface);margin:16px;border-radius:14px;padding:14px 16px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
-.weather-left{display:flex;align-items:center;gap:10px;}
-.weather-icon-big{font-size:32px;}
+.switch-btn{display:flex;align-items:center;gap:5px;background:none;border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:5px 12px;color:white;font-size:11px;cursor:pointer;margin-top:10px;font-family:'DM Sans',sans-serif;}
+.switch-btn svg{width:12px;height:12px;stroke:white;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.weather-strip{background:var(--surface);margin:14px 16px;border-radius:14px;padding:14px 16px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
 .w-temp{font-family:'Syne',sans-serif;font-size:22px;font-weight:600;color:var(--text);}
-.w-desc{font-size:12px;color:var(--text2);margin-top:1px;}
-.weather-stats{display:flex;flex-direction:column;gap:4px;text-align:right;}
+.w-desc{font-size:12px;color:var(--text2);}
 .wstat{font-size:12px;color:var(--text2);}
 .wstat.warn{color:var(--amber);font-weight:500;}
-.alert-card{margin:0 16px 12px;background:var(--red-light);border:1px solid var(--red-b);border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;cursor:pointer;transition:opacity .15s;}
-.alert-card:hover{opacity:.85;}
-.alert-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
-.alert-title{font-size:13px;font-weight:500;color:var(--red);}
-.alert-sub{font-size:12px;color:#C53A3A;margin-top:2px;}
-.section-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);padding:0 16px;margin:16px 0 10px;}
+.alert-card{margin:0 16px 12px;background:var(--red-light);border:1px solid var(--red-b);border-radius:14px;padding:12px 14px;display:flex;gap:10px;cursor:pointer;}
+.section-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);padding:0 16px;margin:14px 0 10px;}
 .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;}
 .svc-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;cursor:pointer;transition:all .2s;}
-.svc-card:hover{border-color:var(--blue-b);background:var(--blue-light);}
-.svc-card.on{border-color:var(--blue-b);background:var(--blue-light);}
+.svc-card:hover,.svc-card.on{border-color:var(--blue-b);background:var(--blue-light);}
 .svc-icon{font-size:24px;margin-bottom:8px;}
 .svc-name{font-size:13px;font-weight:500;color:var(--text);}
 .svc-status{font-size:11px;color:var(--text3);margin-top:2px;}
 .svc-card.on .svc-name{color:var(--blue);}
 .svc-card.on .svc-status{color:var(--blue-mid);}
-.info-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin:0 16px 16px;overflow:hidden;}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin:0 16px 14px;overflow:hidden;}
 .info-row{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border);}
 .info-row:last-child{border-bottom:none;}
 .info-label{font-size:13px;color:var(--text2);}
@@ -79,59 +84,57 @@ html,body{height:100%;overflow:hidden;background:var(--navy);font-family:'DM San
 .badge-green{background:var(--teal-light);color:var(--teal);}
 .badge-blue{background:var(--blue-light);color:var(--blue);}
 .badge-amber{background:var(--amber-light);color:var(--amber);}
-.pb-safe{padding-bottom:16px;}
+.pb{height:20px;}
 
-/* ===== MAP ===== */
-.map-header{background:var(--navy);color:white;padding:16px 20px;}
-.map-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;}
+/* MAP */
+.map-header,.services-header,.checkin-header{background:var(--navy);color:white;padding:16px 20px;flex-shrink:0;}
+.map-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;}
 .map-sub{font-size:12px;opacity:.6;margin-top:2px;}
-.map-legend{display:flex;gap:12px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.map-legend{display:flex;gap:12px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap;flex-shrink:0;}
 .legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);}
 .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.map-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 16px 4px;flex-shrink:0;}
+.map-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;text-align:center;}
+.ms-num{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;}
+.ms-label{font-size:11px;color:var(--text3);margin-top:2px;}
 .map-container{flex:1;padding:16px;overflow-y:auto;}
-.pier-section{margin-bottom:20px;}
+.pier-section{margin-bottom:18px;}
 .pier-label{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
 .berths-row{display:flex;gap:6px;flex-wrap:wrap;}
-.berth{width:44px;height:44px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:600;cursor:pointer;transition:all .2s;border:2px solid transparent;position:relative;}
+.berth{width:44px;height:44px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s;border:2px solid transparent;}
 .berth:hover{transform:scale(1.08);}
 .berth.free{background:var(--teal-light);color:var(--teal);border-color:var(--teal-b);}
 .berth.taken{background:#f0f0f0;color:#aaa;border-color:#e0e0e0;}
 .berth.mine{background:var(--blue-light);color:var(--blue);border-color:var(--blue-b);}
 .berth.reserved{background:var(--amber-light);color:var(--amber);border-color:var(--amber-b);}
 .berth-num{font-size:9px;font-weight:600;}
-.berth-len{font-size:8px;font-weight:400;opacity:.7;}
-.berth-tooltip{position:fixed;background:var(--navy);color:white;border-radius:10px;padding:8px 12px;font-size:12px;pointer-events:none;z-index:1000;display:none;min-width:140px;box-shadow:0 4px 20px rgba(0,0,0,.3);}
-.map-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0 16px 16px;}
-.map-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center;}
-.ms-num{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--text);}
-.ms-label{font-size:11px;color:var(--text3);margin-top:2px;}
+.berth-len{font-size:8px;opacity:.7;}
+.berth-tooltip{position:fixed;background:var(--navy);color:white;border-radius:10px;padding:8px 12px;font-size:12px;pointer-events:none;z-index:1000;display:none;min-width:130px;box-shadow:0 4px 20px rgba(0,0,0,.3);}
 
-/* ===== SERVICES ===== */
-.services-header{background:var(--navy);color:white;padding:16px 20px;}
-.svc-section{margin:0 16px 16px;}
+/* SERVICES */
+.svc-section{margin:0 16px 14px;}
 .svc-full-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
-.svc-full-header{padding:14px 16px;background:var(--blue-light);display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--blue-b);}
+.svc-full-header{padding:13px 16px;background:var(--blue-light);display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--blue-b);}
 .svc-full-icon{font-size:22px;}
 .svc-full-title{font-size:15px;font-weight:500;color:var(--navy);}
 .svc-full-status{font-size:12px;color:var(--blue);}
 .meter-bar-bg{background:#eee;border-radius:99px;height:8px;margin:0 16px;overflow:hidden;}
-.meter-bar{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--blue-mid),var(--teal2));transition:width .5s;}
+.meter-bar{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--blue-mid),var(--teal2));}
 .fuel-row{display:flex;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border);align-items:center;}
 .fuel-row:last-child{border-bottom:none;}
 .fuel-name{font-size:13px;color:var(--text);}
 .fuel-price{font-size:14px;font-weight:600;color:var(--navy);}
-.order-btn{display:block;width:calc(100% - 32px);margin:12px 16px;padding:13px;background:var(--navy);color:white;border:none;border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;text-align:center;font-family:'DM Sans',sans-serif;transition:opacity .15s;}
-.order-btn:hover{opacity:.88;}
+.order-btn{display:block;width:calc(100% - 32px);margin:10px 16px;padding:13px;background:var(--navy);color:white;border:none;border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;text-align:center;font-family:'DM Sans',sans-serif;}
 .order-btn.teal{background:var(--teal);}
 
-/* ===== CHAT ===== */
+/* CHAT */
 .chat-header-bar{background:var(--navy);color:white;padding:14px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
 .bot-ava{width:38px;height:38px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .chat-info{flex:1;}
 .chat-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;}
 .chat-online{font-size:11px;opacity:.6;display:flex;align-items:center;gap:4px;}
 .online-dot{width:6px;height:6px;background:#5DCAA5;border-radius:50%;}
-.messages-area{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch;}
+.messages-area{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;}
 .msg-wrap{display:flex;gap:8px;align-items:flex-end;}
 .msg-wrap.user{flex-direction:row-reverse;}
 .msg-ava{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;background:var(--blue-light);color:var(--blue);}
@@ -146,44 +149,37 @@ html,body{height:100%;overflow:hidden;background:var(--navy);font-family:'DM San
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 .chips-bar{padding:8px 12px;display:flex;gap:6px;overflow-x:auto;flex-shrink:0;border-top:1px solid var(--border);scrollbar-width:none;}
 .chips-bar::-webkit-scrollbar{display:none;}
-.chip{background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-b);border-radius:99px;padding:6px 12px;font-size:12px;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:background .15s;flex-shrink:0;}
+.chip{background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-b);border-radius:99px;padding:6px 12px;font-size:12px;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;flex-shrink:0;}
 .chip:hover{background:var(--blue-b);}
 .input-bar{display:flex;gap:8px;padding:8px 12px 12px;flex-shrink:0;border-top:1px solid var(--border);}
 #chat-input{flex:1;border:1px solid var(--border);border-radius:99px;padding:9px 16px;font-size:14px;outline:none;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;}
 #chat-input:focus{border-color:var(--blue-mid);}
-#send-btn{width:36px;height:36px;background:var(--navy);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;transition:opacity .15s;}
-#send-btn:hover{opacity:.85;}
-#send-btn:disabled{opacity:.4;cursor:not-allowed;}
+#send-btn{width:36px;height:36px;background:var(--navy);color:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#send-btn:disabled{opacity:.4;}
 
-/* ===== SOS ===== */
-.sos-header{background:var(--red);color:white;padding:20px;}
+/* SOS */
+.sos-header{background:var(--red);color:white;padding:20px;flex-shrink:0;}
 .sos-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;}
-.sos-sub{font-size:13px;opacity:.8;margin-top:4px;}
-.big-sos{display:block;margin:20px 16px;padding:20px;background:var(--red);color:white;border:none;border-radius:20px;font-family:'Syne',sans-serif;font-size:22px;font-weight:700;cursor:pointer;text-align:center;letter-spacing:2px;transition:all .15s;box-shadow:0 4px 20px rgba(162,45,45,.4);}
-.big-sos:hover{opacity:.9;transform:scale(.99);}
-.big-sos:active{transform:scale(.97);}
-.sos-sub-btn{display:flex;align-items:center;gap:10px;padding:13px 16px;background:var(--surface);border:1px solid var(--border);border-radius:14px;margin:0 16px 10px;cursor:pointer;transition:background .15s;}
-.sos-sub-btn:hover{background:var(--bg);}
+.sos-sub-text{font-size:13px;opacity:.8;margin-top:4px;}
+.big-sos{display:block;margin:20px 16px;padding:20px;background:var(--red);color:white;border:none;border-radius:20px;font-family:'Syne',sans-serif;font-size:22px;font-weight:700;cursor:pointer;text-align:center;letter-spacing:2px;box-shadow:0 4px 20px rgba(162,45,45,.4);}
+.sos-btn{display:flex;align-items:center;gap:10px;padding:13px 16px;background:var(--surface);border:1px solid var(--border);border-radius:14px;margin:0 16px 10px;cursor:pointer;}
+.sos-btn:hover{background:var(--bg);}
 .sos-btn-icon{font-size:22px;flex-shrink:0;}
 .sos-btn-text{font-size:14px;font-weight:500;color:var(--text);}
 .sos-btn-num{font-size:12px;color:var(--text3);margin-top:1px;}
 
-/* ===== QR CHECK-IN ===== */
-.checkin-header{background:var(--navy);color:white;padding:16px 20px;}
-.qr-display{display:flex;flex-direction:column;align-items:center;padding:24px 16px;}
-.qr-frame{width:160px;height:160px;border:2px dashed var(--border);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;background:var(--surface);}
-.qr-icon{font-size:72px;}
+/* CHECKIN */
+.qr-display{display:flex;flex-direction:column;align-items:center;padding:24px 16px;flex-shrink:0;}
+.qr-frame{width:150px;height:150px;border:2px dashed var(--border);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;background:var(--surface);}
 .qr-hint{font-size:13px;color:var(--text2);text-align:center;line-height:1.5;}
-.checkin-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin:0 16px;overflow:hidden;margin-bottom:16px;}
+.checkin-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin:0 16px 14px;overflow:hidden;}
 .checkin-card-header{background:var(--blue-light);padding:12px 16px;border-bottom:1px solid var(--blue-b);}
 .checkin-card-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--navy);}
-.checkin-card-status{font-size:12px;color:var(--blue);margin-top:2px;}
 
-/* TOAST */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:white;padding:10px 20px;border-radius:99px;font-size:13px;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-@media (prefers-color-scheme:dark){
+@media(prefers-color-scheme:dark){
   :root{--bg:#0d1117;--surface:#161b22;--border:rgba(255,255,255,.08);--text:#e6edf3;--text2:#8b949e;--text3:#656d76;}
   .berth.taken{background:#1e2329;color:#555;border-color:#2d333b;}
   #chat-input{background:#0d1117;}
@@ -200,82 +196,84 @@ html,body{height:100%;overflow:hidden;background:var(--navy);font-family:'DM San
     </span>
   </div>
 
-  <!-- HOME -->
-  <div class="screen active" id="screen-home">
-    <div class="home-header">
-      <div class="marina-label">ACI Marina</div>
-      <div class="marina-name">Split</div>
-      <div class="berth-pill">⚓ Vez A-42 · Adriatic Dream</div>
+  <!-- SELECTOR -->
+  <div class="screen active" id="screen-selector">
+    <div class="selector-header">
+      <div class="selector-logo">Adriatic Croatia International Club</div>
+      <div class="selector-title">ACI Marine</div>
+      <div class="selector-sub">Odaberite marinu</div>
     </div>
+    <div class="selector-search">
+      <input class="search-input" id="marina-search" type="text" placeholder="🔍  Pretraži marine..." oninput="filterMarinas(this.value)">
+    </div>
+    <div class="marina-list-scroll" id="marina-list"></div>
+  </div>
 
+  <!-- HOME -->
+  <div class="screen" id="screen-home">
+    <div class="home-header">
+      <div class="marina-label" id="home-region">Dalmacija – Splitska regija</div>
+      <div class="marina-name" id="home-name">Split</div>
+      <div class="berth-pill">⚓ Vez A-42 · Adriatic Dream</div>
+      <button class="switch-btn" onclick="goTo('selector')">
+        <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        Promijeni marinu
+      </button>
+    </div>
     <div class="weather-strip">
-      <div class="weather-left">
-        <div class="weather-icon-big">🌤️</div>
-        <div>
-          <div class="w-temp">26°C</div>
-          <div class="w-desc">Vedro, NE vjetar</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:30px;">🌤️</span>
+        <div><div class="w-temp">26°C</div><div class="w-desc">Vedro, NE vjetar</div></div>
       </div>
-      <div class="weather-stats">
+      <div style="text-align:right;">
         <div class="wstat">💨 12 čv</div>
         <div class="wstat">🌊 0.4 m</div>
         <div class="wstat warn">⚠️ Bura 18:00</div>
       </div>
     </div>
-
     <div class="alert-card" onclick="goTo('sos')">
-      <div class="alert-icon">⚠️</div>
+      <span style="font-size:20px;">⚠️</span>
       <div>
-        <div class="alert-title">Upozorenje: Bura</div>
-        <div class="alert-sub">Do 30+ čvorova, 18:00–22:00 · Tap za SOS/sigurnost</div>
+        <div style="font-size:13px;font-weight:500;color:var(--red);">Upozorenje: Bura</div>
+        <div style="font-size:12px;color:#C53A3A;margin-top:2px;">Do 30+ čvorova, 18:00–22:00 · Tap za SOS</div>
       </div>
     </div>
-
+    <div class="section-title">Marina info</div>
+    <div class="info-card">
+      <div class="info-row"><span class="info-label">Vezovi</span><span class="info-value" id="info-vezovi">318</span></div>
+      <div class="info-row"><span class="info-label">Telefon</span><span class="info-value" id="info-tel" style="color:var(--blue);">+385 98 398 850</span></div>
+      <div class="info-row"><span class="info-label">VHF</span><span class="info-value" id="info-vhf">Kanal 17</span></div>
+      <div class="info-row"><span class="info-label">Otvoreno</span><span class="info-value" id="info-open">Cijelu godinu</span></div>
+    </div>
     <div class="section-title">Status veza</div>
-    <div class="info-card" style="margin:0 16px 4px;">
+    <div class="info-card">
       <div class="info-row"><span class="info-label">Plovilo</span><span class="info-value">Adriatic Dream</span></div>
       <div class="info-row"><span class="info-label">Vez</span><span class="info-value">A-42 · 12.5 m</span></div>
       <div class="info-row"><span class="info-label">Struja</span><span class="info-value"><span class="badge badge-blue">Aktivna · 8.4 kWh</span></span></div>
       <div class="info-row"><span class="info-label">Voda</span><span class="info-value"><span class="badge badge-blue">Aktivna</span></span></div>
       <div class="info-row"><span class="info-label">Boravak</span><span class="info-value"><span class="badge badge-green">do 22. srp</span></span></div>
     </div>
-
     <div class="section-title">Brzi pristup</div>
     <div class="services-grid">
-      <div class="svc-card on" onclick="goTo('services')">
-        <div class="svc-icon">⚡</div>
-        <div class="svc-name">Struja</div>
-        <div class="svc-status">8.4 kWh danas</div>
-      </div>
-      <div class="svc-card" onclick="goTo('services')">
-        <div class="svc-icon">💧</div>
-        <div class="svc-name">Voda</div>
-        <div class="svc-status">120 L danas</div>
-      </div>
-      <div class="svc-card" onclick="goTo('services')">
-        <div class="svc-icon">⛽</div>
-        <div class="svc-name">Gorivo</div>
-        <div class="svc-status">Naruči dostavu</div>
-      </div>
-      <div class="svc-card" onclick="goTo('checkin')">
-        <div class="svc-icon">📱</div>
-        <div class="svc-name">Check-in</div>
-        <div class="svc-status">QR potvrda</div>
-      </div>
+      <div class="svc-card on" onclick="goTo('services')"><div class="svc-icon">⚡</div><div class="svc-name">Struja</div><div class="svc-status">8.4 kWh danas</div></div>
+      <div class="svc-card" onclick="goTo('services')"><div class="svc-icon">💧</div><div class="svc-name">Voda</div><div class="svc-status">120 L danas</div></div>
+      <div class="svc-card" onclick="goTo('services')"><div class="svc-icon">⛽</div><div class="svc-name">Gorivo</div><div class="svc-status">Naruči dostavu</div></div>
+      <div class="svc-card" onclick="goTo('checkin')"><div class="svc-icon">📱</div><div class="svc-name">Check-in</div><div class="svc-status">QR potvrda</div></div>
     </div>
-    <div class="pb-safe" style="height:20px;"></div>
+    <div class="pb"></div>
   </div>
 
   <!-- MAP -->
   <div class="screen" id="screen-map">
     <div class="map-header">
-      <div class="map-title">Mapa vezova</div>
-      <div class="map-sub">ACI Split · 360 vezova</div>
+      <button class="back-btn" onclick="goTo('home')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Početna</button>
+      <div class="map-title" id="map-title">Mapa vezova</div>
+      <div class="map-sub" id="map-sub">ACI Split</div>
     </div>
     <div class="map-stats">
-      <div class="map-stat"><div class="ms-num" style="color:var(--teal)">142</div><div class="ms-label">Slobodnih</div></div>
-      <div class="map-stat"><div class="ms-num" style="color:var(--text3)">204</div><div class="ms-label">Zauzeto</div></div>
-      <div class="map-stat"><div class="ms-num" style="color:var(--amber)">14</div><div class="ms-label">Rezervirano</div></div>
+      <div class="map-stat"><div class="ms-num" style="color:var(--teal)" id="stat-free">-</div><div class="ms-label">Slobodnih</div></div>
+      <div class="map-stat"><div class="ms-num" style="color:var(--text3)" id="stat-taken">-</div><div class="ms-label">Zauzeto</div></div>
+      <div class="map-stat"><div class="ms-num" style="color:var(--amber)" id="stat-res">-</div><div class="ms-label">Rezervirano</div></div>
     </div>
     <div class="map-legend">
       <div class="legend-item"><div class="legend-dot" style="background:var(--teal-b)"></div>Slobodan</div>
@@ -290,31 +288,22 @@ html,body{height:100%;overflow:hidden;background:var(--navy);font-family:'DM San
   <!-- SERVICES -->
   <div class="screen" id="screen-services">
     <div class="services-header">
+      <button class="back-btn" onclick="goTo('home')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Početna</button>
       <div class="map-title">Usluge</div>
-      <div class="map-sub">Vez A-42 · ACI Split</div>
+      <div class="map-sub" id="svc-sub">Vez A-42 · ACI Split</div>
     </div>
-    <div class="section-title" style="margin-top:16px;">Potrošnja</div>
+    <div class="section-title" style="margin-top:14px;">Potrošnja</div>
     <div class="svc-section">
       <div class="svc-full-card">
-        <div class="svc-full-header">
-          <div class="svc-full-icon">⚡</div>
-          <div><div class="svc-full-title">Struja</div><div class="svc-full-status">Aktivna · Trofazni priključak</div></div>
-        </div>
+        <div class="svc-full-header"><div class="svc-full-icon">⚡</div><div><div class="svc-full-title">Struja</div><div class="svc-full-status">Aktivna · Trofazni</div></div></div>
         <div class="info-row"><span class="info-label">Danas</span><span class="info-value" style="font-weight:600;color:var(--blue);">8.4 kWh</span></div>
-        <div style="padding:0 16px 8px;">
-          <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">Iskorištenost (dnevni limit 20 kWh)</div>
-          <div class="meter-bar-bg"><div class="meter-bar" style="width:42%"></div></div>
-        </div>
-        <div class="info-row"><span class="info-label">Ovaj tjedan</span><span class="info-value">41.2 kWh</span></div>
-        <div class="info-row" style="border:none;"><span class="info-label">Cijena</span><span class="info-value">0.28 €/kWh</span></div>
+        <div style="padding:0 16px 10px;"><div style="font-size:11px;color:var(--text3);margin-bottom:6px;">Iskorištenost (max 20 kWh)</div><div class="meter-bar-bg"><div class="meter-bar" style="width:42%"></div></div></div>
+        <div class="info-row" style="border:none;"><span class="info-label">Ovaj tjedan</span><span class="info-value">41.2 kWh</span></div>
       </div>
     </div>
     <div class="svc-section">
       <div class="svc-full-card">
-        <div class="svc-full-header" style="background:var(--teal-light);border-bottom-color:var(--teal-b);">
-          <div class="svc-full-icon">💧</div>
-          <div><div class="svc-full-title" style="color:var(--teal);">Voda</div><div class="svc-full-status" style="color:var(--teal2);">Aktivna</div></div>
-        </div>
+        <div class="svc-full-header" style="background:var(--teal-light);border-bottom-color:var(--teal-b);"><div class="svc-full-icon">💧</div><div><div class="svc-full-title" style="color:var(--teal);">Voda</div><div class="svc-full-status" style="color:var(--teal2);">Aktivna</div></div></div>
         <div class="info-row"><span class="info-label">Danas</span><span class="info-value" style="font-weight:600;color:var(--teal);">120 L</span></div>
         <div class="info-row" style="border:none;"><span class="info-label">Ovaj tjedan</span><span class="info-value">580 L</span></div>
       </div>
@@ -322,36 +311,37 @@ html,body{height:100%;overflow:hidden;background:var(--navy);font-family:'DM San
     <div class="section-title">Gorivo — dostava na vez</div>
     <div class="svc-section">
       <div class="svc-full-card">
-        <div class="fuel-row"><span class="fuel-name">🔵 Dizel (bez aditiva)</span><span class="fuel-price">1.42 €/L</span></div>
+        <div class="fuel-row"><span class="fuel-name">🔵 Dizel</span><span class="fuel-price">1.42 €/L</span></div>
         <div class="fuel-row"><span class="fuel-name">🟢 BMB 95</span><span class="fuel-price">1.38 €/L</span></div>
         <div class="fuel-row" style="border:none;"><span class="fuel-name">Dostupnost</span><span class="badge badge-green">Odmah dostupno</span></div>
       </div>
     </div>
-    <button class="order-btn" onclick="showToast('Narudžba goriva poslana! Očekujte potvrdu.')">⛽ Naruči gorivo na vez</button>
+    <button class="order-btn" onclick="showToast('Narudžba goriva poslana!')">⛽ Naruči gorivo na vez</button>
     <div class="section-title">Recepcija</div>
     <div class="svc-section">
       <div class="svc-full-card">
         <div class="info-row"><span class="info-label">Radno vrijeme</span><span class="info-value">07:00 – 22:00</span></div>
-        <div class="info-row"><span class="info-label">Telefon</span><span class="info-value" style="color:var(--blue);">021 / 398 548</span></div>
-        <div class="info-row" style="border:none;"><span class="info-label">VHF</span><span class="info-value">Kanal 17</span></div>
+        <div class="info-row"><span class="info-label">Telefon</span><span class="info-value" id="svc-tel" style="color:var(--blue);">+385 98 398 850</span></div>
+        <div class="info-row" style="border:none;"><span class="info-label">VHF</span><span class="info-value" id="svc-vhf">Kanal 17</span></div>
       </div>
     </div>
-    <div class="pb-safe"></div>
+    <div class="pb"></div>
   </div>
 
   <!-- CHAT -->
   <div class="screen" id="screen-chat" style="background:var(--bg);">
     <div class="chat-header-bar">
+      <button class="back-btn" style="padding:0 10px 0 0;" onclick="goTo('home')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
       <div class="bot-ava">⚓</div>
       <div class="chat-info">
         <div class="chat-name">Marina Asistent</div>
-        <div class="chat-online"><div class="online-dot"></div>ACI Split · AI powered</div>
+        <div class="chat-online"><div class="online-dot"></div><span id="chat-sub">ACI Split · AI powered</span></div>
       </div>
     </div>
     <div class="messages-area" id="messages">
       <div class="msg-wrap">
         <div class="msg-ava bot">⚓</div>
-        <div class="bubble bot">Dobar dan! Ja sam vaš AI asistent za ACI Split. Mogu pomoći s informacijama o vezu, uslugama, vremenskim uvjetima, dokumentima i svime vezanom za marinu. 🌊</div>
+        <div class="bubble bot" id="welcome-msg">Dobar dan! Ja sam vaš AI asistent za ACI Split. Mogu pomoći s informacijama o vezu, uslugama, vremenskim uvjetima i svime vezanom za marinu. 🌊</div>
       </div>
     </div>
     <div class="chips-bar">
@@ -372,275 +362,272 @@ html,body{height:100%;overflow:hidden;background:var(--navy);font-family:'DM San
   <!-- SOS -->
   <div class="screen" id="screen-sos">
     <div class="sos-header">
+      <button class="back-btn" onclick="goTo('home')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Početna</button>
       <div class="sos-title">🆘 SOS & Sigurnost</div>
-      <div class="sos-sub">Marina Split · Vez A-42</div>
+      <div class="sos-sub-text" id="sos-sub">Marina Split · Vez A-42</div>
     </div>
-    <div style="background:var(--red-light);border-bottom:1px solid var(--red-b);padding:12px 16px;display:flex;gap:8px;">
+    <div style="background:var(--red-light);border-bottom:1px solid var(--red-b);padding:12px 16px;display:flex;gap:8px;flex-shrink:0;">
       <span style="font-size:18px;">⚠️</span>
-      <div>
-        <div style="font-size:13px;font-weight:500;color:var(--red);">Aktivno upozorenje: Bura</div>
-        <div style="font-size:12px;color:#C53A3A;margin-top:2px;">Pojačanje NE vjetra do 30+ čv, danas 18:00–22:00. Preporučuje se ostati u marini.</div>
-      </div>
+      <div><div style="font-size:13px;font-weight:500;color:var(--red);">Upozorenje: Bura</div><div style="font-size:12px;color:#C53A3A;margin-top:2px;">Do 30+ čv, danas 18:00–22:00.</div></div>
     </div>
     <button class="big-sos" onclick="triggerSOS()">🆘 POŠALJI SOS</button>
     <div class="section-title">Hitni kontakti</div>
-    <div class="sos-sub-btn" onclick="callNumber('021362566')">
+    <div class="sos-btn" onclick="callKapetanija()">
       <div class="sos-btn-icon">🏛️</div>
-      <div><div class="sos-btn-text">Kapetanija Split</div><div class="sos-btn-num">021 / 362 566</div></div>
+      <div><div class="sos-btn-text" id="kap-name">Kapetanija Split</div><div class="sos-btn-num" id="kap-tel">021 / 302 400</div></div>
     </div>
-    <div class="sos-sub-btn" onclick="showToast('VHF Kanal 16 — MRCC Rijeka')">
+    <div class="sos-btn" onclick="showToast('VHF Kanal 16 — MRCC Rijeka')">
       <div class="sos-btn-icon">🚁</div>
-      <div><div class="sos-btn-text">MRCC Rijeka (MRSC)</div><div class="sos-btn-num">VHF Kanal 16 · tel: 195</div></div>
+      <div><div class="sos-btn-text">MRCC Rijeka</div><div class="sos-btn-num">VHF Kanal 16 · tel: 195</div></div>
     </div>
-    <div class="sos-sub-btn" onclick="callNumber('021398548')">
+    <div class="sos-btn" onclick="callMarinaDezhurni()">
       <div class="sos-btn-icon">⚓</div>
-      <div><div class="sos-btn-text">ACI Split — dežurni</div><div class="sos-btn-num">021 / 398 548</div></div>
+      <div><div class="sos-btn-text" id="marina-dez-name">ACI Split — dežurni</div><div class="sos-btn-num" id="marina-dez-tel">+385 98 398 850</div></div>
     </div>
-    <div class="sos-sub-btn" onclick="callNumber('194')">
+    <div class="sos-btn" onclick="callNumber('194')">
       <div class="sos-btn-icon">🚑</div>
       <div><div class="sos-btn-text">Hitna pomoć</div><div class="sos-btn-num">194</div></div>
     </div>
-    <div class="sos-sub-btn" onclick="callNumber('192')">
+    <div class="sos-btn" onclick="callNumber('192')">
       <div class="sos-btn-icon">👮</div>
       <div><div class="sos-btn-text">Policija</div><div class="sos-btn-num">192</div></div>
     </div>
-    <div class="pb-safe"></div>
+    <div class="pb"></div>
   </div>
 
-  <!-- CHECK-IN -->
+  <!-- CHECKIN -->
   <div class="screen" id="screen-checkin">
     <div class="checkin-header">
+      <button class="back-btn" onclick="goTo('home')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Početna</button>
       <div class="map-title">QR Check-in</div>
       <div class="map-sub">Digitalna prijava u marinu</div>
     </div>
     <div class="qr-display">
-      <div class="qr-frame"><div class="qr-icon">📱</div></div>
+      <div class="qr-frame"><span style="font-size:64px;">📱</span></div>
       <div class="qr-hint">Skenirajte QR kod na ulazu marine<br>ili prihvatnom pultu</div>
     </div>
     <div class="checkin-card">
       <div class="checkin-card-header">
         <div class="checkin-card-title">Potvrda boravka</div>
-        <div class="checkin-card-status"><span class="badge badge-green">✓ Prijavljeni</span></div>
+        <div style="font-size:12px;color:var(--blue);margin-top:2px;"><span class="badge badge-green">✓ Prijavljeni</span></div>
       </div>
       <div class="info-row"><span class="info-label">Gost</span><span class="info-value">Marko Horvat</span></div>
       <div class="info-row"><span class="info-label">Plovilo</span><span class="info-value">Adriatic Dream</span></div>
       <div class="info-row"><span class="info-label">Vez</span><span class="info-value">A-42</span></div>
+      <div class="info-row"><span class="info-label">Marina</span><span class="info-value" id="checkin-marina">ACI Split</span></div>
       <div class="info-row"><span class="info-label">Dolazak</span><span class="info-value">15. srpnja 2025</span></div>
       <div class="info-row" style="border:none;"><span class="info-label">Odlazak</span><span class="info-value">22. srpnja 2025</span></div>
     </div>
     <div class="section-title">Potrebni dokumenti</div>
-    <div class="info-card" style="margin:0 16px 16px;">
-      <div class="info-row"><span class="info-label">🪪 Osobna iskaznica / putovnica</span><span class="badge badge-green">✓</span></div>
+    <div class="info-card" style="margin:0 16px 14px;">
+      <div class="info-row"><span class="info-label">🪪 Osobna / putovnica</span><span class="badge badge-green">✓</span></div>
       <div class="info-row"><span class="info-label">🚢 Plovidbena dozvola</span><span class="badge badge-green">✓</span></div>
       <div class="info-row"><span class="info-label">🛡️ Osiguranje plovila</span><span class="badge badge-green">✓</span></div>
-      <div class="info-row" style="border:none;"><span class="info-label">📋 Vinjeta (ako treba)</span><span class="badge badge-amber">Provjeri</span></div>
+      <div class="info-row" style="border:none;"><span class="info-label">📋 Vinjeta</span><span class="badge badge-amber">Provjeri</span></div>
     </div>
-    <button class="order-btn teal" onclick="showToast('QR kod generiran! Prikazite na recepciji.')">📲 Generiraj QR za izlaz</button>
-    <div class="pb-safe"></div>
+    <button class="order-btn teal" onclick="showToast('QR kod generiran!')">📲 Generiraj QR za izlaz</button>
+    <div class="pb"></div>
   </div>
 
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
+  <!-- NAV -->
+  <nav class="bottom-nav" id="bottom-nav" style="display:none;">
     <button class="nav-btn active" id="nav-home" onclick="goTo('home')">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>Početna</span>
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Početna</span>
     </button>
     <button class="nav-btn" id="nav-map" onclick="goTo('map')">
-      <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-      <span>Mapa</span>
+      <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg><span>Mapa</span>
     </button>
     <button class="nav-btn" id="nav-services" onclick="goTo('services')">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-      <span>Usluge</span>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg><span>Usluge</span>
     </button>
     <button class="nav-btn" id="nav-chat" onclick="goTo('chat')">
-      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      <span>Asistent</span>
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Asistent</span>
     </button>
     <button class="nav-btn" id="nav-sos" onclick="goTo('sos')">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
-      <span>SOS</span>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg><span>SOS</span>
     </button>
   </nav>
-
   <div class="toast" id="toast"></div>
 </div>
 
 <script>
-// CLOCK
-function updateClock(){const n=new Date();document.getElementById('clock').textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');}
-updateClock();setInterval(updateClock,10000);
+const MARINAS=[
+  {id:'umag',name:'Umag',region:'Istra',vezovi:475,tel:'+385 52 741 066',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Umag',kapTel:'052 741 078',color:'#5DCAA5'},
+  {id:'rovinj',name:'Rovinj',region:'Istra',vezovi:187,tel:'+385 52 811 313',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Rovinj',kapTel:'052 811 288',color:'#5DCAA5'},
+  {id:'pula',name:'Pula',region:'Istra',vezovi:195,tel:'+385 52 219 142',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Pula',kapTel:'052 211 344',color:'#5DCAA5'},
+  {id:'pomer',name:'Pomer',region:'Istra',vezovi:296,tel:'+385 52 573 162',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Pula',kapTel:'052 211 344',color:'#5DCAA5'},
+  {id:'opatija',name:'Opatija',region:'Kvarner',vezovi:281,tel:'+385 51 271 288',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Rijeka',kapTel:'051 214 031',color:'#378ADD'},
+  {id:'cres',name:'Cres',region:'Kvarner',vezovi:325,tel:'+385 51 571 622',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Cres',kapTel:'051 571 163',color:'#378ADD'},
+  {id:'supetarska',name:'Supetarska Draga',region:'Kvarner',vezovi:281,tel:'+385 51 776 268',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Rab',kapTel:'051 724 124',color:'#378ADD'},
+  {id:'rab',name:'Rab',region:'Kvarner',vezovi:140,tel:'+385 51 724 023',vhf:'Kanal 17',open:'1. tra – 31. lis',kapetanija:'Kapetanija Rab',kapTel:'051 724 124',color:'#378ADD'},
+  {id:'simuni',name:'Šimuni',region:'Kvarner',vezovi:205,tel:'+385 23 697 457',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Novalja',kapTel:'053 661 204',color:'#378ADD'},
+  {id:'zut',name:'Žut',region:'Dalmacija – Šibenska regija',vezovi:120,tel:'+385 22 435 900',vhf:'Kanal 17',open:'1. tra – 31. lis',kapetanija:'Kapetanija Šibenik',kapTel:'022 213 444',color:'#EF9F27'},
+  {id:'piskera',name:'Piškera',region:'Dalmacija – Šibenska regija',vezovi:90,tel:'+385 22 435 900',vhf:'Kanal 17',open:'1. tra – 31. lis',kapetanija:'Kapetanija Šibenik',kapTel:'022 213 444',color:'#EF9F27'},
+  {id:'jezera',name:'Jezera',region:'Dalmacija – Šibenska regija',vezovi:200,tel:'+385 22 439 100',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Šibenik',kapTel:'022 213 444',color:'#EF9F27'},
+  {id:'vodice',name:'Vodice',region:'Dalmacija – Šibenska regija',vezovi:250,tel:'+385 22 443 086',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Šibenik',kapTel:'022 213 444',color:'#EF9F27'},
+  {id:'skradin',name:'Skradin',region:'Dalmacija – Šibenska regija',vezovi:160,tel:'+385 22 771 365',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Šibenik',kapTel:'022 213 444',color:'#EF9F27'},
+  {id:'trogir',name:'Trogir',region:'Dalmacija – Splitska regija',vezovi:170,tel:'+385 21 881 544',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Trogir',kapTel:'021 881 102',color:'#D4537E'},
+  {id:'split',name:'Split',region:'Dalmacija – Splitska regija',vezovi:318,tel:'+385 98 398 850',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Split',kapTel:'021 302 400',color:'#D4537E'},
+  {id:'milna',name:'Milna',region:'Dalmacija – Splitska regija',vezovi:178,tel:'+385 21 636 306',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Hvar',kapTel:'021 741 011',color:'#D4537E'},
+  {id:'vrboska',name:'Vrboska',region:'Dalmacija – Splitska regija',vezovi:120,tel:'+385 21 774 018',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Hvar',kapTel:'021 741 011',color:'#D4537E'},
+  {id:'palmizana',name:'Palmižana',region:'Dalmacija – Splitska regija',vezovi:140,tel:'+385 21 744 995',vhf:'Kanal 17',open:'1. tra – 31. lis',kapetanija:'Kapetanija Hvar',kapTel:'021 741 011',color:'#D4537E'},
+  {id:'korcula',name:'Korčula',region:'Dalmacija – Dubrovačka regija',vezovi:159,tel:'+385 20 711 661',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Korčula',kapTel:'020 711 980',color:'#7F77DD'},
+  {id:'slano',name:'Slano',region:'Dalmacija – Dubrovačka regija',vezovi:220,tel:'+385 20 871 508',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Dubrovnik',kapTel:'020 418 988',color:'#7F77DD'},
+  {id:'dubrovnik',name:'Dubrovnik',region:'Dalmacija – Dubrovačka regija',vezovi:327,tel:'+385 20 455 020',vhf:'Kanal 17',open:'Cijelu godinu',kapetanija:'Kapetanija Dubrovnik',kapTel:'020 418 988',color:'#7F77DD'},
+];
 
-// NAVIGATION
+let currentMarina=null,mapBuilt=false,chatHistory=[];
+
+function buildMarinaList(filter){
+  const list=document.getElementById('marina-list');
+  list.innerHTML='';
+  let lastReg='';
+  const filtered=filter?MARINAS.filter(m=>m.name.toLowerCase().includes(filter.toLowerCase())||m.region.toLowerCase().includes(filter.toLowerCase())):MARINAS;
+  filtered.forEach(m=>{
+    if(m.region!==lastReg){
+      const rl=document.createElement('div');rl.className='region-label';rl.textContent=m.region;list.appendChild(rl);lastReg=m.region;
+    }
+    const item=document.createElement('div');item.className='marina-item';
+    item.innerHTML=`<div class="marina-dot" style="background:${m.color}"></div><div style="flex:1;"><div class="marina-item-name">${m.name}</div><div class="marina-item-sub">${m.vezovi} vezova · ${m.open}</div></div><div style="color:rgba(255,255,255,.3);font-size:20px;">›</div>`;
+    item.onclick=()=>selectMarina(m);list.appendChild(item);
+  });
+  if(!filtered.length)list.innerHTML='<div style="text-align:center;color:rgba(255,255,255,.35);padding:40px 16px;font-size:14px;">Nema rezultata</div>';
+}
+function filterMarinas(v){buildMarinaList(v);}
+
+function selectMarina(m){
+  currentMarina=m;
+  document.getElementById('home-region').textContent=m.region;
+  document.getElementById('home-name').textContent=m.name;
+  document.getElementById('info-vezovi').textContent=m.vezovi;
+  document.getElementById('info-tel').textContent=m.tel;
+  document.getElementById('info-vhf').textContent=m.vhf;
+  document.getElementById('info-open').textContent=m.open;
+  document.getElementById('map-title').textContent='Mapa vezova — '+m.name;
+  document.getElementById('map-sub').textContent='ACI '+m.name+' · '+m.vezovi+' vezova';
+  document.getElementById('svc-sub').textContent='Vez A-42 · ACI '+m.name;
+  document.getElementById('svc-tel').textContent=m.tel;
+  document.getElementById('svc-vhf').textContent=m.vhf;
+  document.getElementById('sos-sub').textContent='Marina '+m.name+' · Vez A-42';
+  document.getElementById('kap-name').textContent=m.kapetanija;
+  document.getElementById('kap-tel').textContent=m.kapTel;
+  document.getElementById('marina-dez-name').textContent='ACI '+m.name+' — dežurni';
+  document.getElementById('marina-dez-tel').textContent=m.tel;
+  document.getElementById('checkin-marina').textContent='ACI '+m.name;
+  document.getElementById('chat-sub').textContent='ACI '+m.name+' · AI powered';
+  document.getElementById('welcome-msg').textContent='Dobar dan! Ja sam vaš AI asistent za ACI '+m.name+'. Mogu pomoći s informacijama o vezu, uslugama, vremenskim uvjetima i svime vezanom za marinu. 🌊';
+  chatHistory=[];mapBuilt=false;
+  document.getElementById('map-container').innerHTML='';
+  document.getElementById('bottom-nav').style.display='flex';
+  goTo('home');
+}
+
+buildMarinaList();
+
 function goTo(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('screen-'+name).classList.add('active');
-  const nb=document.getElementById('nav-'+name);
-  if(nb)nb.classList.add('active');
+  const nb=document.getElementById('nav-'+name);if(nb)nb.classList.add('active');
+  if(name==='selector'){document.getElementById('bottom-nav').style.display='none';document.getElementById('marina-search').value='';buildMarinaList();}
+  else document.getElementById('bottom-nav').style.display='flex';
   if(name==='map'&&!mapBuilt)buildMap();
 }
 
-// TOAST
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2800);
-}
+function updateClock(){const n=new Date();document.getElementById('clock').textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');}
+updateClock();setInterval(updateClock,10000);
 
-// CALL
-function callNumber(num){
-  if(confirm('Pozivati '+num+'?'))window.location.href='tel:'+num;
-}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+function callNumber(num){if(confirm('Pozivati '+num+'?'))window.location.href='tel:'+num;}
+function callKapetanija(){if(currentMarina)callNumber(currentMarina.kapTel);}
+function callMarinaDezhurni(){if(currentMarina)callNumber(currentMarina.tel);}
 
-// SOS
 function triggerSOS(){
-  if(confirm('POSLATI SOS SIGNAL?\n\nKapetanija Split bit će obaviještena.\nVaša lokacija: Vez A-42, ACI Split\nPlovilo: Adriatic Dream\n\nKoristite samo u slučaju stvarne opasnosti!')){
-    showToast('🆘 SOS poslan! Ostanite mirni i slušajte VHF 16');
-  }
+  const mn=currentMarina?currentMarina.name:'Split';
+  if(confirm('POSLATI SOS SIGNAL?\n\nACI '+mn+' · Vez A-42\nPlovilo: Adriatic Dream\n\nKoristite samo u hitnim slučajevima!')){showToast('🆘 SOS poslan! Slušajte VHF 16');}
 }
 
-// MAP BUILD
-let mapBuilt=false;
 function buildMap(){
   mapBuilt=true;
+  const m=currentMarina||MARINAS[15];
+  const total=m.vezovi;
+  const free=Math.floor(total*.38),res=Math.floor(total*.05),taken=total-free-res;
+  document.getElementById('stat-free').textContent=free;
+  document.getElementById('stat-taken').textContent=taken;
+  document.getElementById('stat-res').textContent=res;
   const container=document.getElementById('map-container');
-  const piers=[
-    {name:'Gat A',count:20,myBerth:42},
-    {name:'Gat B',count:18,myBerth:null},
-    {name:'Gat C',count:16,myBerth:null},
-    {name:'Gat D',count:14,myBerth:null},
-    {name:'Gat E',count:12,myBerth:null},
-  ];
+  container.innerHTML='';
+  const piersCount=Math.ceil(total/20);
+  const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const rng=(seed)=>{let s=seed;return()=>{s=(s*1664525+1013904223)&0xffffffff;return(s>>>0)/0xffffffff;};};
-  piers.forEach((pier,pi)=>{
-    const r=rng(pi*137+7);
-    const div=document.createElement('div');
-    div.className='pier-section';
-    const label=document.createElement('div');
-    label.className='pier-label';
-    label.textContent=pier.name;
-    div.appendChild(label);
-    const row=document.createElement('div');
-    row.className='berths-row';
-    const offset=pi*20+1;
-    for(let i=0;i<pier.count;i++){
-      const num=offset+i;
-      const b=document.createElement('div');
-      b.className='berth';
-      const isMine=num===pier.myBerth;
+  for(let p=0;p<piersCount;p++){
+    const r=rng(p*137+7);
+    const count=Math.min(20,total-p*20);
+    const div=document.createElement('div');div.className='pier-section';
+    const label=document.createElement('div');label.className='pier-label';label.textContent='Gat '+letters[p];div.appendChild(label);
+    const row=document.createElement('div');row.className='berths-row';
+    for(let i=0;i<count;i++){
+      const num=p*20+i+1;
+      const b=document.createElement('div');b.className='berth';
+      const isMine=p===0&&i===41;
       const rand=r();
-      const isReserved=!isMine&&rand>0.82&&rand<0.9;
-      const isFree=!isMine&&!isReserved&&rand>0.4;
-      if(isMine)b.classList.add('mine');
-      else if(isReserved)b.classList.add('reserved');
-      else if(isFree)b.classList.add('free');
-      else b.classList.add('taken');
-      const lens=[8,10,12,14,16,18,20];
-      const len=lens[Math.floor(r()*lens.length)];
+      const isRes=!isMine&&rand>.82&&rand<.87;
+      const isFree=!isMine&&!isRes&&rand>.4;
+      if(isMine)b.classList.add('mine');else if(isRes)b.classList.add('reserved');else if(isFree)b.classList.add('free');else b.classList.add('taken');
+      const len=[8,10,12,14,16,18,20][Math.floor(r()*7)];
       b.innerHTML='<div class="berth-num">'+(isMine?'★':num)+'</div><div class="berth-len">'+len+'m</div>';
-      b.title=(isMine?'Vaš vez':'Vez '+num)+' · '+len+'m';
-      b.addEventListener('click',()=>{
-        const tooltip=document.getElementById('berth-tooltip');
+      b.onclick=()=>{
+        const tt=document.getElementById('berth-tooltip');
         const rect=b.getBoundingClientRect();
-        tooltip.innerHTML='<strong>'+(isMine?'⭐ Vaš vez A-'+num:'Vez '+pier.name.replace('Gat ','')+'-'+num)+'</strong><br>'+len+'m · '+(isMine?'Zauzeto (vi)':isFree?'✅ Slobodan':isReserved?'🟡 Rezerviran':'❌ Zauzeto');
-        tooltip.style.display='block';
-        tooltip.style.top=(rect.top-70)+'px';
-        tooltip.style.left=Math.max(8,rect.left-30)+'px';
-        setTimeout(()=>tooltip.style.display='none',2000);
-      });
+        tt.innerHTML='<strong>'+(isMine?'⭐ Vaš vez':letters[p]+'-'+num)+'</strong><br>'+len+'m · '+(isMine?'Zauzeto (vi)':isFree?'✅ Slobodan':isRes?'🟡 Rezerviran':'❌ Zauzeto');
+        tt.style.cssText='display:block;top:'+(rect.top-70)+'px;left:'+Math.max(8,rect.left-30)+'px;';
+        setTimeout(()=>tt.style.display='none',2000);
+      };
       row.appendChild(b);
     }
-    div.appendChild(row);
-    container.appendChild(div);
-  });
+    div.appendChild(row);container.appendChild(div);
+  }
   const pb=document.createElement('div');pb.style.height='20px';container.appendChild(pb);
 }
 
-// CHAT
-const chatHistory=[];
-const SYSTEM=`Ti si AI marina asistent za ACI Split (Autonomni Centar Jedriličarstvo) u Hrvatskoj. Pomaži gostima marine pretežno na hrvatskom jeziku, ali odgovaraj i na engleskom ili talijanskom ako gost piše na tim jezicima.
-
-Kontekst:
-- Marina ACI Split, kapacitet 360 vezova, koordinate 43.5°N 16.4°E
-- Gost: Marko Horvat, plovilo "Adriatic Dream" (12.5m jedrilica), vez A-42, boravak 15-22. srpnja 2025
-- Dostupne usluge: struja (1P/3P), voda, gorivo (dizel 1.42€/L, BMB 95 1.38€/L dostava na vez), sanitarni čvor, wifi, restoran, mini market, praonica, dizalica do 15t
-- Recepcija: 07:00-22:00, tel 021/398-548, VHF 17
-- Kapetanija Split: 021/362-566
-- MRCC Rijeka: VHF kanal 16, tel 195
-- Hitna: 194, Policija: 192
-- Trenutno upozorenje: Bura se očekuje danas između 18:00 i 22:00, do 30+ čvorova NE vjetar
-
-Odgovaraj kratko, prijazno i informativno, kao iskusan djelatnik marine. Emoji možeš koristiti umjereno. Ako nešto ne znaš točno, predloži gos­tu da se obrati recepciji.`;
-
-function addMsg(text,isUser){
-  const msgs=document.getElementById('messages');
-  const wrap=document.createElement('div');
-  wrap.className='msg-wrap'+(isUser?' user':'');
-  const ava=document.createElement('div');
-  ava.className='msg-ava'+(isUser?'':' bot');
-  ava.textContent=isUser?'MH':'⚓';
-  const bub=document.createElement('div');
-  bub.className='bubble '+(isUser?'user':'bot');
-  bub.textContent=text;
-  wrap.appendChild(ava);wrap.appendChild(bub);
-  msgs.appendChild(wrap);
-  msgs.scrollTop=msgs.scrollHeight;
-  return wrap;
-}
-
-function addTyping(){
-  const msgs=document.getElementById('messages');
-  const wrap=document.createElement('div');
-  wrap.className='msg-wrap';wrap.id='typing-indicator';
-  const ava=document.createElement('div');ava.className='msg-ava bot';ava.textContent='⚓';
-  const bub=document.createElement('div');bub.className='bubble bot typing';
-  bub.innerHTML='<span></span><span></span><span></span>';
-  wrap.appendChild(ava);wrap.appendChild(bub);
-  msgs.appendChild(wrap);msgs.scrollTop=msgs.scrollHeight;
-}
-function removeTyping(){const el=document.getElementById('typing-indicator');if(el)el.remove();}
-
 async function sendMessage(override){
   const inp=document.getElementById('chat-input');
-  const text=override||inp.value.trim();
-  if(!text)return;
-  inp.value='';
-  document.getElementById('send-btn').disabled=true;
-  addMsg(text,true);
-  chatHistory.push({role:'user',content:text});
-  addTyping();
+  const text=override||inp.value.trim();if(!text)return;
+  inp.value='';document.getElementById('send-btn').disabled=true;
+  addMsg(text,true);chatHistory.push({role:'user',content:text});addTyping();
+  const m=currentMarina||MARINAS[15];
+  const system=`Ti si AI marina asistent za ACI ${m.name} u Hrvatskoj. Pomaži gostima na hrvatskom, engleskom ili talijanskom ovisno kako pišu.
+Marina: ACI ${m.name} | Regija: ${m.region} | Vezovi: ${m.vezovi} | Tel: ${m.tel} | VHF: ${m.vhf} | Otvoreno: ${m.open}
+Kapetanija: ${m.kapetanija} (${m.kapTel}) | MRCC Rijeka: VHF 16, tel 195 | Hitna: 194 | Policija: 192
+Gost: Marko Horvat, plovilo Adriatic Dream (12.5m jedrilica), vez A-42
+Upozorenje: Bura se očekuje danas 18:00-22:00 do 30+ čvorova.
+Odgovaraj kratko, prijazno i informativno kao iskusan djelatnik marine.`;
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system:SYSTEM,
-        messages:chatHistory
-      })
-    });
-    const data=await res.json();
-    removeTyping();
-    const reply=(data.content&&data.content[0])?data.content[0].text:'Žao mi je, nije uspjelo. Obratite se recepciji: 021/398-548.';
-    addMsg(reply,false);
-    chatHistory.push({role:'assistant',content:reply});
-  }catch(e){
-    removeTyping();
-    addMsg('Greška u mreži. Pokušajte ponovo ili nazovite recepciju: 021/398-548.',false);
-  }
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system,messages:chatHistory})});
+    const data=await res.json();removeTyping();
+    const reply=(data.content&&data.content[0])?data.content[0].text:'Žao mi je, pokušajte ponovo ili nazovite recepciju: '+m.tel;
+    addMsg(reply,false);chatHistory.push({role:'assistant',content:reply});
+  }catch(e){removeTyping();addMsg('Greška u mreži. Nazovite recepciju: '+m.tel,false);}
   document.getElementById('send-btn').disabled=false;
 }
-
-function sendChip(text){sendMessage(text);}
-
-document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage();});
-
-// SERVICE WORKER
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js').catch(()=>{});
+function sendChip(t){sendMessage(t);}
+function addMsg(text,isUser){
+  const msgs=document.getElementById('messages');
+  const wrap=document.createElement('div');wrap.className='msg-wrap'+(isUser?' user':'');
+  const ava=document.createElement('div');ava.className='msg-ava'+(isUser?'':' bot');ava.textContent=isUser?'MH':'⚓';
+  const bub=document.createElement('div');bub.className='bubble '+(isUser?'user':'bot');bub.textContent=text;
+  wrap.appendChild(ava);wrap.appendChild(bub);msgs.appendChild(wrap);msgs.scrollTop=msgs.scrollHeight;
 }
+function addTyping(){
+  const msgs=document.getElementById('messages');
+  const wrap=document.createElement('div');wrap.className='msg-wrap';wrap.id='typing-indicator';
+  const ava=document.createElement('div');ava.className='msg-ava bot';ava.textContent='⚓';
+  const bub=document.createElement('div');bub.className='bubble bot typing';bub.innerHTML='<span></span><span></span><span></span>';
+  wrap.appendChild(ava);wrap.appendChild(bub);msgs.appendChild(wrap);msgs.scrollTop=msgs.scrollHeight;
+}
+function removeTyping(){const el=document.getElementById('typing-indicator');if(el)el.remove();}
+document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage();});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
 </body>
 </html>
